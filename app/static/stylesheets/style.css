@@ -1,0 +1,20 @@
+body {
+    background-color: #2c4fdd;
+}
+
+.list-group {
+    position: relative;
+    margin: 10px auto 5px auto;
+}
+
+.score-box {
+    font-family : "Roboto Black";
+    font-size : 2rem;
+    position: relative;
+    margin: auto;
+}
+
+.score-box-row {
+    position: relative;
+    margin: auto auto 10px auto;
+}
