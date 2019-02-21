@@ -1,36 +1,30 @@
 {% extends "layout.html" %}
 
-<!-- Flask code for communicating with layout.html and
-putting the content of index.html there -->
-
 {% block body %}
-<br>
-<br>
-<div class="container">
-    <h4>{{ run_date }}</h4>
-    <br>
-    <div class="score-box row">
-        <div class="list-group">
-            {% for i in range(0,rows) %}
-                <a class="list-group-item score-box-row list-group-item-action">
-                    <div class=" row">
-                        <div class="col-xs-6">
-                            <p> {{ games[i][6] }} </p>
-                            <p> {{ games[i][22] }} </p>
+    {{ super() }}
+    <div class="container">
+        <h4>{{ run_date }}</h4>
+        <br>
+        <div class="score-box row">
+            <div class="list-group">
+                {% for i in range(0,rows) %}
+                    <a class="list-group-item score-box-row list-group-item-action">
+                        <div class=" row">
+                            <div class="col-xs-6">
+                                <p> {{ games[i][6] }} </p>
+                                <p> {{ games[i][22] }} </p>
+                            </div>
+                            <div class="col-xs-1">
+                                 &nbsp;-&nbsp;
+                            </div>
+                            <div class="col-xs-6">
+                                <p> {{ games[i][34] }} </p>
+                                <p> {{ games[i][50] }} </p>
+                            </div>
                         </div>
-                        <div class="col-xs-1">
-                             &nbsp;-&nbsp;
-                        </div>
-                        <div class="col-xs-6">
-                            <p> {{ games[i][34] }} </p>
-                            <p> {{ games[i][50] }} </p>
-                        </div>
-                    </div>
-                </a>
-            {% endfor %}
+                    </a>
+                {% endfor %}
+            </div>
         </div>
     </div>
-</div>
-
-
 {% endblock %}
