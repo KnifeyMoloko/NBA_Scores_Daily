@@ -1,0 +1,55 @@
+{% block doc -%}
+<!DOCTYPE html>
+<html{% block html_attribs %}{% endblock html_attribs %}>
+{%- block html %}
+  <head>
+    {%- block head %}
+    <title>{% block title %}NBA Scores Daily{% endblock title %}</title>
+
+    {%- block metas %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <meta name="description" content="Simple web page for displaying NBA stats">
+    <meta name="keywords" content="NBA, stats, basketball, statistics, numbers">
+    <meta name="author" content="KnfieyMoloko">
+    {%- endblock metas %}
+
+    {%- block styles %}
+    <!-- Material CSS -->
+    <link href="{{ url_for('static', filename='stylesheets/materialize.min.css') }}" type="text/css"
+          rel="stylesheet"  media="screen,projection"/>
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+
+    <!-- Import custom CSS -->
+    <link href="{{ url_for('static', filename='stylesheets/style.css') }}" rel="stylesheet" type="text/css"/>
+
+    <!-- favicon definitions -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='icons/favicon.ico') }}"
+    type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='icons/favicon.ico') }}"
+    type="image/x-icon">
+    {%- endblock styles %}
+    {%- endblock head %}
+  </head>
+
+  <body{% block body_attribs %}{% endblock body_attribs %}>
+    {% block body -%}
+    {% block navbar %}
+    {%- endblock navbar %}
+    {% block content -%}
+    {%- endblock content %}
+
+    {% block scripts %}
+        <!-- Materialize CSS init script -->
+        <script type="text/javascript"
+                src="{{ url_for('static',
+                filename='JS/materialize.min.js') }}">
+        </script>
+    {%- endblock scripts %}
+    {%- endblock body %}
+  </body>
+{%- endblock html %}
+</html>
+{% endblock doc -%}

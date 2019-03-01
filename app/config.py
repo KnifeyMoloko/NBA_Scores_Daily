@@ -5,6 +5,7 @@ class Config:
     db_url = None
     table_names = []
     sslmode = None
+    SECRET_KEY = '1701Kirk'
 
 
 class ProductionConfig(Config):

@@ -1,13 +1,14 @@
-from flask import Flask, render_template, current_app
-from flask_bootstrap import Bootstrap
+from flask import Flask, render_template, current_app, url_for
 from datetime import datetime, date
+from flask_wtf.csrf import CSRFProtect
+from app.forms import DateForm
 from .config import *
 import psycopg2
 
 
 app = Flask(__name__)
-bootstrap = Bootstrap(app)
-
+csrf = CSRFProtect(app)
+app.config.from_object(config[os.environ.get('FLASK_ENV')])
 runtime = []
 
 
@@ -15,12 +16,22 @@ runtime = []
 def index():
     """Creates index.html root page with the initial data.
     """
-    run_date = date.today()
-    games, rows = get_games(run_date)
+    d = date.today()
+    games, rows = get_games(d)
     return render_template("index.html", title="NBA Daily Scores",
                            games=games,
                            rows=rows,
-                           run_date=str(run_date))
+                           date=d
+                           )
+
+
+@app.route("/games/<timestamp>")
+def games(timestamp):
+    print(timestamp)
+    date = datetime.fromtimestamp(int(timestamp)/1000.0)
+    formatted_date = date.strftime("%d-%m-%Y")
+    games,rows = get_games(date)
+    return render_template("index.html", games=games, rows=rows, date=formatted_date)
 
 
 def get_games(run_date=None):
@@ -41,7 +52,7 @@ def get_games(run_date=None):
 
     # execute queries
     db_cursor.execute("SELECT * FROM {} "
-                      "WHERE away_game_date_est = ('{}'::DATE - '1 day'::INTERVAL);".format(table_names[0], run_date))
+                      "WHERE away_game_date_est = ('{}'::DATE - '2 day'::INTERVAL);".format(table_names[0], run_date))
     data = db_cursor.fetchall()
     rows = db_cursor.rowcount
     return data, rows

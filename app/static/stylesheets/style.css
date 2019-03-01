@@ -1,5 +1,5 @@
 body {
-    background-color: #2c4fdd;
+    background-color: black;
 }
 
 .list-group {
@@ -11,10 +11,12 @@ body {
     font-family : "Roboto Black";
     font-size : 2rem;
     position: relative;
-    margin: auto;
+    margin: 20px auto;
 }
 
-.score-box-row {
-    position: relative;
-    margin: auto auto 10px auto;
+.datepicker {
+    width: 15%;
+}
+
+.datepicker-day-button {
 }

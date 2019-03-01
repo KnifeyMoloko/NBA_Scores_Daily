@@ -1,41 +1,44 @@
-{% extends "layout.html" %}
+{% extends "base.html" %}
 
-{% block body -%}
-    {{ super() }}
+{% block navbar %}
+    <nav>
+        <div class="nav-wrapper indigo darken-4">
+            <input type="text" class="brand-logo center datepicker"
+                   href="#" value="{{ date }}"/>
+            <ul id="nav-mobile" class="left">
+                <li><a class="nav-link" href="#">West Conference Standings</a></li>
+            </ul>
+            <ul id="nav-mobile" class="right">
+                <li><a class="nav-link" href="#">East Conference Standings</a></li>
+            </ul>
+        </div>
+    </nav>
+{% endblock navbar %}
+
+{% block content -%}
     <div class="container">
-        <h4>{{ run_date }}</h4>
-        <br>
-        <input type="text" class="datepicker">
-        <div class="score-box row">
-            <div class="list-group">
-                {% for i in range(0,rows) %}
-                    <a class="list-group-item score-box-row list-group-item-action">
-                        <div class=" row">
-                            <div class="col-xs-6">
-                                <p> {{ games[i][6] }} </p>
-                                <p> {{ games[i][22] }} </p>
-                            </div>
-                            <div class="col-xs-1">
-                                 &nbsp;-&nbsp;
-                            </div>
-                            <div class="col-xs-6">
-                                <p> {{ games[i][34] }} </p>
-                                <p> {{ games[i][50] }} </p>
-                            </div>
+        <div class="collection score-box">
+            {% for i in range(0,rows) %}
+                    <div class="row collection-item blue lighten-3 center-align">
+                        <div class="col s5 m5 l5 xl5">
+                            <p> {{ games[i][6] }} </p>
+                            <p> {{ games[i][22] }} </p>
                         </div>
-                    </a>
-                {% endfor %}
-            </div>
+                        <div class="col s1 m1 l1 xl1">
+                             &nbsp;-&nbsp;
+                        </div>
+                        <div class="col s5 m5 l5 xl5">
+                            <p> {{ games[i][34] }} </p>
+                            <p> {{ games[i][50] }} </p>
+                        </div>
+                    </div>
+            {% endfor %}
         </div>
     </div>
 {% block scripts -%}
     {{ super() }}
-    <script type="text/javascript">
-        document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('.datepicker');
-            var options = {};
-            var instances = M.Datepicker.init(elems, options);
-          });
+    <script type="text/javascript" src="{{ url_for('static',
+                filename='JS/datePicker.js') }}">
     </script>
 {%- endblock scripts  %}
-{%- endblock body %}
+{%- endblock content %}
