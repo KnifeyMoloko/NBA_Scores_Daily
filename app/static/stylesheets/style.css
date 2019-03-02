@@ -16,7 +16,13 @@ body {
 
 .datepicker {
     width: 15%;
+    font-family: "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Monaco, monospace;
 }
 
 .datepicker-day-button {
+    color: rgba(5, 8, 17, 0.44);
+}
+
+.datepicker-modal {
+    /*width: 20%;*/
 }

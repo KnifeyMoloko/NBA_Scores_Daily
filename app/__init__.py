@@ -1,4 +1,4 @@
-from flask import Flask, render_template, current_app, url_for
+from flask import Flask, render_template, current_app, url_for, redirect
 from datetime import datetime, date
 from flask_wtf.csrf import CSRFProtect
 from app.forms import DateForm
@@ -14,24 +14,26 @@ runtime = []
 
 @app.route("/")
 def index():
-    """Creates index.html root page with the initial data.
+    """Creates games.html root page with the initial data.
     """
-    d = date.today()
+    d = datetime.today()
+    ts = str(datetime.timestamp(d))
+    fd = d.strftime("%d-%m-%Y")
     games, rows = get_games(d)
-    return render_template("index.html", title="NBA Daily Scores",
-                           games=games,
-                           rows=rows,
-                           date=d
-                           )
+    return render_template('games.html', games=games, rows=rows, date=fd)
+
+
+@app.route("/games/NaN")
+def games_nan():
+    return redirect(url_for('index'))
 
 
 @app.route("/games/<timestamp>")
 def games(timestamp):
-    print(timestamp)
     date = datetime.fromtimestamp(int(timestamp)/1000.0)
     formatted_date = date.strftime("%d-%m-%Y")
     games,rows = get_games(date)
-    return render_template("index.html", games=games, rows=rows, date=formatted_date)
+    return render_template("games.html", games=games, rows=rows, date=formatted_date)
 
 
 def get_games(run_date=None):
@@ -56,7 +58,3 @@ def get_games(run_date=None):
     data = db_cursor.fetchall()
     rows = db_cursor.rowcount
     return data, rows
-
-
-if __name__ == "__main__":
-    app.run(threaded=True)
