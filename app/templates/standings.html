@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="standings" id="west-standings">
+        <table class="standings-table center-align">
+            <thead>
+                <tr>
+                    <td class="center-align">Logo</td>
+                    <td class="center-align">#</td>
+                    <td class="center-align">Team</td>
+                    <td class="center-align">Games</td>
+                    <td class="center-align">Wins</td>
+                    <td class="center-align">Losses</td>
+                    <td class="center-align">Win %</td>
+                    <td class="center-align">Home record</td>
+                    <td class="center-align">Road record</td>
+                </tr>
+            </thead>
+            {% for i in range(0, 15) %}
+                <tr>
+                    <td class="center-align"><img class="responsive-img" src="{{ url_for('static',
+                                    filename="logos_50/" ~ standings.get(conference)[i][1] ~ ".png") }}"/>
+                    </td>
+                    <td class="center-align">{{ (i + 1)|string() }}</td>
+                    <td class="center-align">{{ standings.get(conference)[i][6] }}</td>
+                    <td class="center-align">{{ standings.get(conference)[i][7] }}</td>
+                    <td class="center-align">{{ standings.get(conference)[i][8] }}</td>
+                    <td class="center-align">{{ standings.get(conference)[i][9] }}</td>
+                    <td class="center-align">{{ standings.get(conference)[i][10] }}</td>
+                    <td class="center-align">{{ standings.get(conference)[i][11] }}</td>
+                    <td class="center-align">{{ standings.get(conference)[i][12] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock content %}

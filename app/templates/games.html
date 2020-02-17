@@ -1,44 +1,92 @@
 {% extends "base.html" %}
 
-{% block navbar %}
-    <nav>
-        <div class="nav-wrapper indigo darken-4">
-            <input type="text" class="brand-logo center datepicker"
-                   href="#" value="{{ date }}"/>
-            <ul id="nav-mobile" class="left">
-                <li><a class="nav-link" href="#">West Conference Standings</a></li>
-            </ul>
-            <ul id="nav-mobile" class="right">
-                <li><a class="nav-link" href="#">East Conference Standings</a></li>
-            </ul>
-        </div>
-    </nav>
-{% endblock navbar %}
-
 {% block content -%}
-    <div class="container">
-        <div class="collection score-box">
-            {% for i in range(0,rows) %}
-                    <div class="row collection-item blue lighten-3 center-align">
-                        <div class="col s5 m5 l5 xl5">
-                            <p> {{ games[i][6] }} </p>
-                            <p> {{ games[i][22] }} </p>
+<div class="row main-container">
+    <div class="col s12 m6 l6 xl6 center-align" id="game-cards">
+        <div class="row">
+            {% for i in range (0, rows) %}
+                <div class="col s12 m6 l3 xl3">
+                    <div class="card game-card">
+                        <div class="card-content activator">
+                            <div class="row card-logo-row">
+                                <div class="col s6 logo-column">
+                                    <img class="card-image activator" src="{{ url_for('static',
+                                    filename="logos_89/" + team_ids[i][0] + ".png") }}"/>
+                                </div>
+                                <div class="col s6 logo-column">
+                                    <img class="card-image activator" src="{{ url_for('static',
+                                    filename="logos_89/" + team_ids[i][1] +".png") }}"/>
+                                </div>
+                            </div>
+                            <!--hr class="logo-hr-score"-->
+                            <div class="row card-score-and-name">
+                                <div class="col s6 team-score-column">
+                                    <span class="team-name-text activator"> {{ games[i][7] }} </span>
+                                    <br>
+                                    <span class="team-win-loss activator">{{ games[i][8] }}</span>
+                                    <br>
+                                    <span class="team-score-text activator"> {{ games[i][23] }} </span>
+                                </div>
+                                <div class="col s6 team-score-column">
+                                    <span class="team-name-text activator"> {{ games[i][35] }} </span>
+                                    <br>
+                                    <span class="team-win-loss activator">{{ games[i][36] }}</span>
+                                    <br>
+                                    <span class="team-score-text activator"> {{ games[i][51] }} </span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col s1 m1 l1 xl1">
-                             &nbsp;-&nbsp;
-                        </div>
-                        <div class="col s5 m5 l5 xl5">
-                            <p> {{ games[i][34] }} </p>
-                            <p> {{ games[i][50] }} </p>
+                        <div class="card-reveal">
+                            <table class="reveal-table">
+                                <tr>
+                                    <td>Team</td>
+                                    <td>{{ games[i][6] }}</td>
+                                    <td>{{ games[i][34] }}</td>
+                                    <td><span class="card-title"><i class="material-icons right reveal-close-icon">close</i></span></td>
+                                </tr>
+                                <tr>
+                                    <td>FG%</td>
+                                    <td>{{ '{:.1%}'.format(games[i][24]) }}</td>
+                                    <td>{{ '{:.1%}'.format(games[i][52]) }}</td>
+                                </tr>
+                                <tr>
+                                    <td>FT%</td>
+                                    <td>{{ '{:.1%}'.format(games[i][25]) }}</td>
+                                    <td>{{ '{:.1%}'.format(games[i][53]) }}</td>
+                                </tr>
+                                <tr>
+                                    <td>3PT%</td>
+                                    <td>{{ '{:.1%}'.format(games[i][26]) }}</td>
+                                    <td>{{ '{:.1%}'.format(games[i][54]) }}</td>
+                                </tr>
+                                <tr>
+                                    <td>AST</td>
+                                    <td>{{ games[i][27] }}</td>
+                                    <td>{{ games[i][55] }}</td>
+                                </tr>
+                                <tr>
+                                    <td>REB</td>
+                                    <td>{{ games[i][28] }}</td>
+                                    <td>{{ games[i][56] }}</td>
+                                </tr>
+                                <tr>
+                                    <td>TRV</td>
+                                    <td>{{ games[i][29] }}</td>
+                                    <td>{{ games[i][57] }}</td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
+                </div>
             {% endfor %}
         </div>
     </div>
+</div>
+
 {% block scripts -%}
     {{ super() }}
-    <script type="text/javascript" src="{{ url_for('static',
-                filename='JS/datePicker.js') }}">
-    </script>
+    <!--script type="text/javascript" src="{{ url_for('static',
+            filename='JS/resizer.js') }}">
+    </script-->
 {%- endblock scripts  %}
 {%- endblock content %}

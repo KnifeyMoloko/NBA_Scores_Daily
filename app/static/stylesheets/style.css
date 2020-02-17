@@ -1,28 +1,142 @@
-body {
-    background-color: black;
+/* CSS style definitions for the NBA Scores Daily page */
+
+/* General */
+
+.tabs-content.carousel .carousel-item {
+    height: 2000px;
 }
 
-.list-group {
-    position: relative;
-    margin: 10px auto 5px auto;
+/* Navbar */
+
+.navbar {
+    font-family: "Alfa Slab One", cursive;
+    background-color: #0D47A1;
+    color: whitesmoke;
 }
 
-.score-box {
-    font-family : "Roboto Black";
-    font-size : 2rem;
-    position: relative;
-    margin: 20px auto;
+.nav-content {
+    color: white;
 }
 
-.datepicker {
-    width: 15%;
-    font-family: "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Monaco, monospace;
+.dp-link {
+    font-weight: bold;
+    font-size: 1.35rem;
 }
+
+/* Sidenav */
+
+#mobile-nav {
+
+}
+
+.side-content {
+
+}
+
+.side-dp {
+
+}
+
+/* Datepicker modal */
 
 .datepicker-day-button {
     color: rgba(5, 8, 17, 0.44);
 }
 
-.datepicker-modal {
-    /*width: 20%;*/
+/* Main container */
+
+.main-container {
+    background: whitesmoke;
+    color: #e11307;
+    width: 100%;
+}
+
+.no-games-container {
+    background-color: whitesmoke;
+    color: #e11307;
+    margin: auto;
+}
+
+.no-games-nba-logo {
+    margin: 5% auto;
+}
+
+/* Score cards */
+
+#game-cards {
+    width: 100%;
+}
+
+.card .card-content {
+    padding: 16px 10px 4px 10px;
+}
+
+.game-card {
+    background-color: #ffffff;
+    border: ridge #0D47A1;
+}
+
+.team-score-column {
+    /*padding: 0 0.25rem;*/
+}
+
+.card-image {
+    margin: 0.7rem auto 0 auto;
+}
+
+.team-score-text {
+    font-family: 'Alfa Slab One', cursive;
+    font-size: 1.8rem;
+    color: #0D47A1;
+    margin-bottom: 0.5rem;
+}
+
+.team-name-text {
+    font-family: 'Alfa Slab One', cursive;
+    font-size: 1rem;
+    color: #0D47A1;
+    margin: 0.5rem auto 0.8rem 0;
+}
+
+.team-win-loss {
+    font-family: "Alfa Slab One", cursive;
+    font-size: 0.7rem;
+    color: #212121;
+}
+
+.logo-hr-score {
+    border-style: dotted none none none;
+    border-width: 10px;
+    width: 12%;
+    color: grey;
+}
+
+.name-hr-score {
+    border-style: dotted none none none;
+    border-width: 7px;
+    width: 12%;
+}
+
+.reveal-table {
+    color: #0D47A1;
+    font-family: "Alfa Slab One", cursive;
+    font-size: 1rem;
+}
+
+.reveal-close-icon {
+    color: #0D47A1;
+    margin: 0;
+}
+
+/* Standings */
+
+.standings-table {
+    overflow-x: scroll;
+    width: 90%;
+    margin: 1% auto;
+    border-style: ridge;
+    border-color: #0D47A1;
+    background-color: white;
+    font-size: 1.2rem;
+    color: #0D47A1;
 }
